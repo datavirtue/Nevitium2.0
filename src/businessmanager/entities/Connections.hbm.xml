@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 8, 2017 1:13:38 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="businessmanager.entities.Connections" table="CONNECTIONS" schema="CONNECTIONS" catalog="DATAVIRTUE" optimistic-lock="version">
+        <id name="id" type="java.lang.Long">
+            <column name="ID" />
+            <generator class="identity" />
+        </id>
+        <property name="company" type="string">
+            <column name="COMPANY" length="50" />
+        </property>
+        <property name="firstName" type="string">
+            <column name="FIRST_NAME" length="30" />
+        </property>
+        <property name="lastName" type="string">
+            <column name="LAST_NAME" length="30" />
+        </property>
+        <property name="address" type="string">
+            <column name="ADDRESS" length="100" />
+        </property>
+        <property name="address2" type="string">
+            <column name="ADDRESS2" length="100" />
+        </property>
+        <property name="city" type="string">
+            <column name="CITY" length="50" />
+        </property>
+        <property name="province" type="string">
+            <column name="PROVINCE" length="20" />
+        </property>
+        <property name="postcode" type="string">
+            <column name="POSTCODE" length="10" />
+        </property>
+        <property name="country" type="string">
+            <column name="COUNTRY" length="2" />
+        </property>
+        <property name="contact" type="string">
+            <column name="CONTACT" length="40" />
+        </property>
+        <property name="cellPhone" type="string">
+            <column name="CELL_PHONE" length="20" />
+        </property>
+        <property name="landPhone" type="string">
+            <column name="LAND_PHONE" length="20" />
+        </property>
+        <property name="faxPhone" type="string">
+            <column name="FAX_PHONE" length="20" />
+        </property>
+        <property name="email" type="string">
+            <column name="EMAIL" length="128" />
+        </property>
+        <property name="skype" type="string">
+            <column name="SKYPE" length="128" />
+        </property>
+        <property name="linkedin" type="string">
+            <column name="LINKEDIN" length="128" />
+        </property>
+        <property name="facebook" type="string">
+            <column name="FACEBOOK" length="128" />
+        </property>
+        <property name="twitter" type="string">
+            <column name="TWITTER" length="128" />
+        </property>
+        <property name="website" type="string">
+            <column name="WEBSITE" length="128" />
+        </property>
+        <property name="misc" type="string">
+            <column name="MISC" length="128" />
+        </property>
+        <property name="customer" type="java.lang.Boolean">
+            <column name="CUSTOMER" />
+        </property>
+        <property name="supplier" type="java.lang.Boolean">
+            <column name="SUPPLIER" />
+        </property>
+        <property name="taxable1" type="java.lang.Boolean">
+            <column name="TAXABLE1" />
+        </property>
+        <property name="taxable2" type="java.lang.Boolean">
+            <column name="TAXABLE2" />
+        </property>
+        <set name="supplierses" table="SUPPLIERS" schema="INVENTORY" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="CONNECTIONS_ID" />
+            </key>
+            <one-to-many class="businessmanager.entities.Suppliers" />
+        </set>
+    </class>
+</hibernate-mapping>
