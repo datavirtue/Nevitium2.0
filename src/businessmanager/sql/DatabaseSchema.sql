@@ -71,6 +71,7 @@ create table if not exists inventory.inventory(
     ,AVAILABLE boolean default(1)
     ,CUTOFF decimal(19,4)
     ,PARTIAL_SALE boolean default(0)
+    ,returnPeriodInDays int
 );
 
 drop table if exists inventory.supplier;
@@ -107,8 +108,59 @@ id bigint identity
 ,memo nvarchar(500)
 ,isPaid boolean default(0)
 ,isVoid boolean default(0)
+,taxrate1 decimal(19,4)
+,taxrate2 decimal(19,4)
 ,contact_id bigint NULL
+,isQuote boolean default(0)
 
 );
 
 ALTER TABLE IF EXISTS invoices.invoice ADD FOREIGN KEY (contact_id) REFERENCES contacts.contact (id);
+
+
+drop table if exists invoices.invoiceitems;
+create table if not exists invoices.invoiceitems (
+    id bigint identity,
+    invoice_id bigint not null,
+    inventory_id bigint null,
+    quantity decimal(19,4) not null,
+    code nvarchar(64),
+    description nvarchar(120),
+    note nvarchar(1000),
+    unit_price decimal(19,4),
+    unit_cost decimal(19,4),
+    taxable1 decimal(19,4),
+    taxable2 decimal(19,4),
+    returnPeriodInDays int
+    
+);
+
+ALTER TABLE IF EXISTS invoices.invoiceitems ADD FOREIGN KEY (invoice_id) REFERENCES invoices.invoice (id);
+ALTER TABLE IF EXISTS invoices.invoiceitems ADD FOREIGN KEY (inventory_id) REFERENCES inventory.inventory (id);
+
+drop schema if exists common;
+create schema if not exists common;
+
+drop table if exists common.countries;
+create table if exists common.countries (
+    id bigint identity
+    ,country nvarchar(2)
+    ,twoDigitCode nvarchar(2)
+    ,threeDigitCode nvarchar(3)
+    ,code nvarchar(3)
+    ,name nvarchar(32)
+
+);
+
+drop schema if exists auth;
+create schema if not exists auth;
+
+drop table if exists auth.users;
+create table if not exists auth.users(
+    id bigint identity
+    ,userid uuid not null default(RANDOM_UUID())
+    ,password nvarchar(500)
+    ,username nvarchar(120)
+);
+
+
