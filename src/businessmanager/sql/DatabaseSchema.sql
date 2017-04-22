@@ -115,7 +115,7 @@ id bigint identity
 
 );
 
-ALTER TABLE IF EXISTS invoices.invoice ADD FOREIGN KEY (contact_id) REFERENCES contacts.contact (id);
+ALTER TABLE IF EXISTS invoices.invoice ADD CONSTRAINT fk_invoices_contacts FOREIGN KEY (contact_id) REFERENCES contacts.contact (id);
 
 
 drop table if exists invoices.invoiceitems;
@@ -142,7 +142,7 @@ drop schema if exists common;
 create schema if not exists common;
 
 drop table if exists common.countries;
-create table if exists common.countries (
+create table if not exists common.countries (
     id bigint identity
     ,country nvarchar(2)
     ,twoDigitCode nvarchar(2)
@@ -162,5 +162,29 @@ create table if not exists auth.users(
     ,password nvarchar(500)
     ,username nvarchar(120)
 );
+
+drop table if exists auth.roles;
+create table if not exists auth.roles(
+    id bigint identity
+    ,rolename nvarchar(32)
+
+);
+
+insert into auth.roles
+(rolename)
+VALUES ('master'), ('inventory'), ('connecctions'), ('invoice'), ('reports'), ('checks'), ('exports'), ('settings');
+
+
+drop table if exists auth.userroles;
+create table if not exists auth.userroles(
+    id bigint identity
+    ,users_id bigint 
+    ,roles_id bigint
+);
+
+ALTER TABLE IF EXISTS auth.userroles ADD FOREIGN KEY (users_id) REFERENCES auth.users (id);
+ALTER TABLE IF EXISTS auth.userroles ADD FOREIGN KEY (roles_id) REFERENCES auth.roles (id);
+
+
 
 

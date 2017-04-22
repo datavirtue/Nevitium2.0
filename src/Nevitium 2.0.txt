@@ -1,0 +1,27 @@
+
+
+Conversion to SQL 
+    let open old data but require conversion
+    check folder for new data
+        if one exists open it
+        if many exist let them choose
+        if conversion required ask for filename
+    single user mode is embedded
+    multi-user mode is server mode
+        multi-user allows specification of port number
+    support RCSI
+        maintain modified date and user name for each row to provide overwrite features
+
+
+
+
+
+
+
+
+Multi-user server client feature
+show users IP address
+database username and password
+    maintain users and passwords between application and database
+
+

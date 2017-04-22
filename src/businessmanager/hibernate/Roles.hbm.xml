@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 22, 2017 1:04:42 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="businessmanager.hibernate.Roles" table="ROLES" schema="AUTH" catalog="DATAVIRTUE" optimistic-lock="version">
+        <id name="id" type="java.lang.Long">
+            <column name="ID" />
+            <generator class="identity" />
+        </id>
+        <property name="rolename" type="string">
+            <column name="ROLENAME" length="32" />
+        </property>
+        <set name="userroleses" table="USERROLES" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ROLES_ID" />
+            </key>
+            <one-to-many class="businessmanager.hibernate.Userroles" />
+        </set>
+    </class>
+</hibernate-mapping>

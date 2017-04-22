@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Apr 8, 2017 1:13:38 AM by Hibernate Tools 4.3.1 -->
+<!-- Generated Apr 22, 2017 1:04:42 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="businessmanager.entities.Inventory" table="INVENTORY" schema="INVENTORY" catalog="DATAVIRTUE" optimistic-lock="version">
+    <class name="businessmanager.hibernate.Inventory" table="INVENTORY" schema="INVENTORY" catalog="DATAVIRTUE" optimistic-lock="version">
         <id name="id" type="java.lang.Long">
             <column name="ID" />
             <generator class="identity" />
@@ -14,11 +14,11 @@
         <property name="code" type="string">
             <column name="CODE" length="64" />
         </property>
-        <property name="shortDescription" type="string">
-            <column name="SHORT_DESCRIPTION" length="120" />
+        <property name="description" type="string">
+            <column name="DESCRIPTION" length="120" />
         </property>
-        <property name="longDescription" type="string">
-            <column name="LONG_DESCRIPTION" length="2000" />
+        <property name="note" type="string">
+            <column name="NOTE" length="2000" />
         </property>
         <property name="size" type="string">
             <column name="SIZE" length="20" />
@@ -53,11 +53,26 @@
         <property name="partialSale" type="java.lang.Boolean">
             <column name="PARTIAL_SALE" />
         </property>
-        <set name="supplierses" table="SUPPLIERS" inverse="true" lazy="true" fetch="select">
+        <property name="returnperiodindays" type="java.lang.Integer">
+            <column name="RETURNPERIODINDAYS" />
+        </property>
+        <set name="documents" table="DOCUMENT" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="INVENTORY_ID" not-null="true" />
+            </key>
+            <one-to-many class="businessmanager.hibernate.Document" />
+        </set>
+        <set name="invoiceitemses" table="INVOICEITEMS" schema="INVOICES" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="INVENTORY_ID" />
             </key>
-            <one-to-many class="businessmanager.entities.Suppliers" />
+            <one-to-many class="businessmanager.hibernate.Invoiceitems" />
+        </set>
+        <set name="suppliers" table="SUPPLIER" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="INVENTORY_ID" not-null="true" />
+            </key>
+            <one-to-many class="businessmanager.hibernate.Supplier" />
         </set>
     </class>
 </hibernate-mapping>

@@ -41,7 +41,15 @@ Contributor(s):
 -->
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="DATAVIRTUE"/>
-  <table-filter match-name="SUPPLIERS"/>
-  <table-filter match-name="CONNECTIONS"/>
+  <table-filter match-name="COUNTRIES"/>
+  <table-filter match-name="DOCUMENT"/>
+  <table-filter match-name="SUPPLIER"/>
   <table-filter match-name="INVENTORY"/>
+  <table-filter match-name="CONTACT"/>
+  <table-filter match-name="USERS"/>
+  <table-filter match-name="INVOICEITEMS"/>
+  <table-filter match-name="ROLES"/>
+  <table-filter match-name="SHIPADDRESS"/>
+  <table-filter match-name="USERROLES"/>
+  <table-filter match-name="INVOICE"/>
 </hibernate-reverse-engineering>

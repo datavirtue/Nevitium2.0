@@ -1,5 +1,5 @@
-package businessmanager.entities;
-// Generated Apr 8, 2017 1:13:38 AM by Hibernate Tools 4.3.1
+package businessmanager.hibernate;
+// Generated Apr 22, 2017 1:04:41 PM by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
@@ -15,8 +15,8 @@ public class Inventory  implements java.io.Serializable {
      private Long id;
      private String upc;
      private String code;
-     private String shortDescription;
-     private String longDescription;
+     private String description;
+     private String note;
      private String size;
      private String weight;
      private BigDecimal quantity;
@@ -28,16 +28,19 @@ public class Inventory  implements java.io.Serializable {
      private Boolean available;
      private BigDecimal cutoff;
      private Boolean partialSale;
-     private Set supplierses = new HashSet(0);
+     private Integer returnperiodindays;
+     private Set documents = new HashSet(0);
+     private Set invoiceitemses = new HashSet(0);
+     private Set suppliers = new HashSet(0);
 
     public Inventory() {
     }
 
-    public Inventory(String upc, String code, String shortDescription, String longDescription, String size, String weight, BigDecimal quantity, BigDecimal cost, BigDecimal price, String category, Boolean taxable1, Boolean taxable2, Boolean available, BigDecimal cutoff, Boolean partialSale, Set supplierses) {
+    public Inventory(String upc, String code, String description, String note, String size, String weight, BigDecimal quantity, BigDecimal cost, BigDecimal price, String category, Boolean taxable1, Boolean taxable2, Boolean available, BigDecimal cutoff, Boolean partialSale, Integer returnperiodindays, Set documents, Set invoiceitemses, Set suppliers) {
        this.upc = upc;
        this.code = code;
-       this.shortDescription = shortDescription;
-       this.longDescription = longDescription;
+       this.description = description;
+       this.note = note;
        this.size = size;
        this.weight = weight;
        this.quantity = quantity;
@@ -49,7 +52,10 @@ public class Inventory  implements java.io.Serializable {
        this.available = available;
        this.cutoff = cutoff;
        this.partialSale = partialSale;
-       this.supplierses = supplierses;
+       this.returnperiodindays = returnperiodindays;
+       this.documents = documents;
+       this.invoiceitemses = invoiceitemses;
+       this.suppliers = suppliers;
     }
    
     public Long getId() {
@@ -73,19 +79,19 @@ public class Inventory  implements java.io.Serializable {
     public void setCode(String code) {
         this.code = code;
     }
-    public String getShortDescription() {
-        return this.shortDescription;
+    public String getDescription() {
+        return this.description;
     }
     
-    public void setShortDescription(String shortDescription) {
-        this.shortDescription = shortDescription;
+    public void setDescription(String description) {
+        this.description = description;
     }
-    public String getLongDescription() {
-        return this.longDescription;
+    public String getNote() {
+        return this.note;
     }
     
-    public void setLongDescription(String longDescription) {
-        this.longDescription = longDescription;
+    public void setNote(String note) {
+        this.note = note;
     }
     public String getSize() {
         return this.size;
@@ -164,12 +170,33 @@ public class Inventory  implements java.io.Serializable {
     public void setPartialSale(Boolean partialSale) {
         this.partialSale = partialSale;
     }
-    public Set getSupplierses() {
-        return this.supplierses;
+    public Integer getReturnperiodindays() {
+        return this.returnperiodindays;
     }
     
-    public void setSupplierses(Set supplierses) {
-        this.supplierses = supplierses;
+    public void setReturnperiodindays(Integer returnperiodindays) {
+        this.returnperiodindays = returnperiodindays;
+    }
+    public Set getDocuments() {
+        return this.documents;
+    }
+    
+    public void setDocuments(Set documents) {
+        this.documents = documents;
+    }
+    public Set getInvoiceitemses() {
+        return this.invoiceitemses;
+    }
+    
+    public void setInvoiceitemses(Set invoiceitemses) {
+        this.invoiceitemses = invoiceitemses;
+    }
+    public Set getSuppliers() {
+        return this.suppliers;
+    }
+    
+    public void setSuppliers(Set suppliers) {
+        this.suppliers = suppliers;
     }
 
 

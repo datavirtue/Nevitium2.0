@@ -1773,6 +1773,7 @@ private void closeAll() {
         upgradeExportItem = new javax.swing.JMenuItem();
         upgradeImportItem = new javax.swing.JMenuItem();
         conversionImport = new javax.swing.JMenuItem();
+        //multiUserConversion = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JSeparator();
         settingsItem = new javax.swing.JMenuItem();
         jSeparator3 = new javax.swing.JSeparator();
@@ -1827,6 +1828,15 @@ private void closeAll() {
         });
         fileMenu.add(newCompanyItem);
 
+        newCompanyItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/businessmanager/res/Aha-16/enabled/Open file.png"))); // NOI18N
+        newCompanyItem.setText("Open/Create New Company Folder");
+        newCompanyItem.setToolTipText("Browse - Open or create a new company");
+        newCompanyItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newCompanyItemActionPerformed(evt);
+            }
+        });
+        
         backupItem.setIcon (new javax.swing.ImageIcon(getClass().getResource("/businessmanager/res/Aha-16/enabled/Archive.png")));
         backupItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_BACK_SPACE, java.awt.event.InputEvent.CTRL_MASK));
         backupItem.setText("Backup to ZIP File");

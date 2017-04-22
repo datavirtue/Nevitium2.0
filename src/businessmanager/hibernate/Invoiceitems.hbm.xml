@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 22, 2017 1:04:42 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="businessmanager.hibernate.Invoiceitems" table="INVOICEITEMS" schema="INVOICES" catalog="DATAVIRTUE" optimistic-lock="version">
+        <id name="id" type="java.lang.Long">
+            <column name="ID" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="inventory" class="businessmanager.hibernate.Inventory" fetch="select">
+            <column name="INVENTORY_ID" />
+        </many-to-one>
+        <many-to-one name="invoice" class="businessmanager.hibernate.Invoice" fetch="select">
+            <column name="INVOICE_ID" not-null="true" />
+        </many-to-one>
+        <property name="quantity" type="big_decimal">
+            <column name="QUANTITY" scale="4" not-null="true" />
+        </property>
+        <property name="code" type="string">
+            <column name="CODE" length="64" />
+        </property>
+        <property name="description" type="string">
+            <column name="DESCRIPTION" length="120" />
+        </property>
+        <property name="note" type="string">
+            <column name="NOTE" length="1000" />
+        </property>
+        <property name="unitPrice" type="big_decimal">
+            <column name="UNIT_PRICE" scale="4" />
+        </property>
+        <property name="unitCost" type="big_decimal">
+            <column name="UNIT_COST" scale="4" />
+        </property>
+        <property name="taxable1" type="big_decimal">
+            <column name="TAXABLE1" scale="4" />
+        </property>
+        <property name="taxable2" type="big_decimal">
+            <column name="TAXABLE2" scale="4" />
+        </property>
+        <property name="returnperiodindays" type="java.lang.Integer">
+            <column name="RETURNPERIODINDAYS" />
+        </property>
+    </class>
+</hibernate-mapping>

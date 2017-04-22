@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Apr 8, 2017 1:13:38 AM by Hibernate Tools 4.3.1 -->
+<!-- Generated Apr 22, 2017 1:04:42 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="businessmanager.entities.Connections" table="CONNECTIONS" schema="CONNECTIONS" catalog="DATAVIRTUE" optimistic-lock="version">
+    <class name="businessmanager.hibernate.Contact" table="CONTACT" schema="CONTACTS" catalog="DATAVIRTUE" optimistic-lock="version">
         <id name="id" type="java.lang.Long">
             <column name="ID" />
             <generator class="identity" />
@@ -26,8 +26,8 @@
         <property name="city" type="string">
             <column name="CITY" length="50" />
         </property>
-        <property name="province" type="string">
-            <column name="PROVINCE" length="20" />
+        <property name="provence" type="string">
+            <column name="PROVENCE" length="20" />
         </property>
         <property name="postcode" type="string">
             <column name="POSTCODE" length="10" />
@@ -80,11 +80,23 @@
         <property name="taxable2" type="java.lang.Boolean">
             <column name="TAXABLE2" />
         </property>
-        <set name="supplierses" table="SUPPLIERS" schema="INVENTORY" inverse="true" lazy="true" fetch="select">
+        <set name="shipaddresses" table="SHIPADDRESS" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="CONNECTIONS_ID" />
+                <column name="CONTACT_ID" />
             </key>
-            <one-to-many class="businessmanager.entities.Suppliers" />
+            <one-to-many class="businessmanager.hibernate.Shipaddress" />
+        </set>
+        <set name="suppliers" table="SUPPLIER" schema="INVENTORY" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="CONTACT_ID" not-null="true" />
+            </key>
+            <one-to-many class="businessmanager.hibernate.Supplier" />
+        </set>
+        <set name="invoices" table="INVOICE" schema="INVOICES" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="CONTACT_ID" />
+            </key>
+            <one-to-many class="businessmanager.hibernate.Invoice" />
         </set>
     </class>
 </hibernate-mapping>

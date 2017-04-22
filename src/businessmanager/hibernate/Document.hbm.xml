@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 22, 2017 1:04:42 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="businessmanager.hibernate.Document" table="DOCUMENT" schema="INVENTORY" catalog="DATAVIRTUE" optimistic-lock="version">
+        <id name="id" type="java.lang.Long">
+            <column name="ID" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="inventory" class="businessmanager.hibernate.Inventory" fetch="select">
+            <column name="INVENTORY_ID" not-null="true" />
+        </many-to-one>
+        <property name="name" type="string">
+            <column name="NAME" length="30" />
+        </property>
+        <property name="mimeType" type="string">
+            <column name="MIME_TYPE" length="30" />
+        </property>
+        <property name="document" type="blob">
+            <column name="DOCUMENT" />
+        </property>
+    </class>
+</hibernate-mapping>

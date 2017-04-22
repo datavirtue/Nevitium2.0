@@ -44,9 +44,16 @@ Contributor(s):
     <property name="hibernate.connection.driver_class">org.h2.Driver</property>
     <property name="hibernate.connection.url">jdbc:h2:tcp://localhost:9092/~/nevitium/datavirtue</property>
     <property name="hibernate.connection.username">sa</property>
-    <property name="hibernate.dialect">org.hibernate.dialect.H2Dialect</property>
-    <mapping resource="businessmanager/entities/Suppliers.hbm.xml"/>
-    <mapping resource="businessmanager/entities/Inventory.hbm.xml"/>
-    <mapping resource="businessmanager/entities/Connections.hbm.xml"/>
+    <mapping resource="businessmanager/hibernate/Invoiceitems.hbm.xml"/>
+    <mapping resource="businessmanager/hibernate/Countries.hbm.xml"/>
+    <mapping resource="businessmanager/hibernate/Shipaddress.hbm.xml"/>
+    <mapping resource="businessmanager/hibernate/Roles.hbm.xml"/>
+    <mapping resource="businessmanager/hibernate/Invoice.hbm.xml"/>
+    <mapping resource="businessmanager/hibernate/Inventory.hbm.xml"/>
+    <mapping resource="businessmanager/hibernate/Users.hbm.xml"/>
+    <mapping resource="businessmanager/hibernate/Document.hbm.xml"/>
+    <mapping resource="businessmanager/hibernate/Contact.hbm.xml"/>
+    <mapping resource="businessmanager/hibernate/Userroles.hbm.xml"/>
+    <mapping resource="businessmanager/hibernate/Supplier.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

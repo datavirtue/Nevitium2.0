@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 22, 2017 1:04:42 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="businessmanager.hibernate.Invoice" table="INVOICE" schema="INVOICES" catalog="DATAVIRTUE" optimistic-lock="version">
+        <id name="id" type="java.lang.Long">
+            <column name="ID" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="contact" class="businessmanager.hibernate.Contact" fetch="select">
+            <column name="CONTACT_ID" />
+        </many-to-one>
+        <property name="invoicenumber" type="string">
+            <column name="INVOICENUMBER" length="10" />
+        </property>
+        <property name="invoicedate" type="timestamp">
+            <column name="INVOICEDATE" length="23" />
+        </property>
+        <property name="customer" type="string">
+            <column name="CUSTOMER" length="500" />
+        </property>
+        <property name="shippingcost" type="big_decimal">
+            <column name="SHIPPINGCOST" scale="4" />
+        </property>
+        <property name="memo" type="string">
+            <column name="MEMO" length="500" />
+        </property>
+        <property name="ispaid" type="java.lang.Boolean">
+            <column name="ISPAID" />
+        </property>
+        <property name="isvoid" type="java.lang.Boolean">
+            <column name="ISVOID" />
+        </property>
+        <property name="taxrate1" type="big_decimal">
+            <column name="TAXRATE1" scale="4" />
+        </property>
+        <property name="taxrate2" type="big_decimal">
+            <column name="TAXRATE2" scale="4" />
+        </property>
+        <property name="isquote" type="java.lang.Boolean">
+            <column name="ISQUOTE" />
+        </property>
+        <set name="invoiceitemses" table="INVOICEITEMS" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="INVOICE_ID" not-null="true" />
+            </key>
+            <one-to-many class="businessmanager.hibernate.Invoiceitems" />
+        </set>
+    </class>
+</hibernate-mapping>
